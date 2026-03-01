@@ -1,0 +1,106 @@
+:root {
+	--angle: 0turn;
+}
+@keyframes rainbow {
+	100% {
+		--angle: 1turn;
+	}
+}
+
+@property --angle {
+	syntax: "<angle>";
+	inherits: false;
+	initial-value: 0turn;
+}
+
+.btn-fancy {
+	position: relative;
+	--gray: #454449;
+	--black: #32352a;
+	--padding: 15px;
+	--brad: 35px;
+	isolation: isolate;
+	font-size: 40px;
+	display: inline-grid;
+	grid-template-areas: "button";
+
+	cursor: pointer;
+
+	& > * {
+		scale: 1;
+	}
+	&:active {
+		&:before,
+		&:after,
+		.text {
+			scale: 0.9;
+		}
+		&:after {
+			--blur: 7px;
+			--padding: 10px;
+			animation-play-state: paused;
+		}
+	}
+
+	&:after {
+		/* GRADIENT */
+		content: "";
+		--offset: 10px;
+		--walk: calc(var(--padding) * -1);
+		width: calc(100% + var(--padding) * 2);
+		height: calc(100% + var(--padding) * 2);
+		z-index: 0;
+		transform: translate(var(--walk), var(--walk));
+		border-radius: var(--brad);
+		--blur: 20px;
+		filter: blur(var(--blur));
+		opacity: 0.5;
+		grid-area: button;
+		/* Conic rainbow graident */
+		animation: rainbow 3s linear infinite;
+		background: conic-gradient(from var(--angle), #ff0000, #ffff00, #00ff00, #00ffff, #0000ff, #ff00ff, #ff0000);
+	}
+
+	&:before {
+		/* BLACK BUTTON */
+		content: "";
+		/* Gradient from gray to black */
+		background: linear-gradient(to bottom, var(--gray), var(--black));
+		grid-area: button;
+		padding: 20px;
+		z-index: 2;
+		border-radius: calc(var(--brad) - var(--padding));
+		box-shadow:
+			0 0 10px 0 rgba(0, 0, 0, 0.2),
+			0 8px 10px 0 rgba(0, 0, 0, 0.2);
+	}
+	.text {
+		/* BLACK CIRCLE */
+		background: linear-gradient(to bottom, var(--black), var(--gray));
+		border-radius: 100px;
+		color: #e9e9e9;
+		grid-area: button;
+		padding: 15px 30px;
+		margin: 20px;
+		z-index: 3;
+	}
+}
+
+.glass {
+	position: absolute;
+	inset: calc(var(--padding) * -1);
+	background: rgba(255, 255, 255, 0.5);
+	border-radius: var(--brad);
+	border: 0;
+	padding: var(--padding);
+	--blur: 1px;
+	--white: rgba(255, 255, 255, 1);
+	--blackBorder: rgba(0, 0, 0, 0.2);
+	box-shadow:
+		0 -1px var(--blur) 0 var(--white),
+		0 1px var(--blur) 0 var(--white),
+		1px 1px var(--blur) 0 var(--blackBorder),
+		-1px 0 var(--blur) 0 var(--blackBorder),
+		0 0 10px rgba(0, 0, 0, 0.1);
+	z-index: 1;
+}
