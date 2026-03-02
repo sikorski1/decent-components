@@ -1,0 +1,132 @@
+.btn-1 {
+	position: relative;
+	
+	background: linear-gradient(0deg, #ff9700 0%, #fb4b02 100%);
+	font-size: 24px;
+	color: #ffffff;
+	border-radius: 8px;
+	box-shadow: 0 0 10px rgba(245, 50, 50, 0.01);
+	transition:
+		color 0.2s ease,
+		background 0.2s ease;
+	cursor: pointer;
+
+	&:hover {
+		background: #ffffff;
+		color: #fb4b02;
+		&::before {
+			height: 100%;
+		}
+		&::after {
+			width: 100%;
+		}
+	}
+
+	&::before,
+	&::after {
+		position: absolute;
+		content: "";
+		right: 0;
+		bottom: 0;
+		background: rgba(251, 75, 2, 1);
+		box-shadow:
+			-7px -7px 20px 0px rgba(255, 255, 255, 0.9),
+			-4px -4px 5px 0px rgba(255, 255, 255, 0.9),
+			7px 7px 20px 0px rgba(0, 0, 0, 0.2),
+			4px 4px 5px 0px rgba(0, 0, 0, 0.3);
+		transition: all 0.3s ease;
+        pointer-events: none;
+	}
+	&::before {
+		height: 0%;
+		width: 2px;
+	}
+	&::after {
+		width: 0%;
+		height: 2px;
+	}
+
+	span {
+        padding: 15px 30px;
+		position: relative;
+		display: block;
+	}
+
+	span:before,
+	span:after {
+		position: absolute;
+		content: "";
+		left: 0;
+		top: 0;
+		background: rgba(251, 75, 2, 1);
+		box-shadow:
+			-7px -7px 20px 0px rgba(255, 255, 255, 0.9),
+			-4px -4px 5px 0px rgba(255, 255, 255, 0.9),
+			7px 7px 20px 0px rgba(0, 0, 0, 0.2),
+			4px 4px 5px 0px rgba(0, 0, 0, 0.3);
+		transition: all 0.3s ease;
+	}
+	span:before {
+		width: 2px;
+		height: 0%;
+	}
+	span:after {
+		height: 2px;
+		width: 0%;
+	}
+	span:hover:before {
+		height: 100%;
+	}
+	span:hover:after {
+		width: 100%;
+	}
+}
+
+.btn-1-clip-path {
+	position: relative;
+	padding: 15px 30px;
+	background: linear-gradient(0deg, #ff9700 0%, #fb4b02 100%);
+    background-size: 200% 100%;
+	background-position: left;
+	font-size: 24px;
+	color: #ffffff;
+	border-radius: 8px;
+	box-shadow: 0 0 10px rgba(245, 50, 50, 0.01);
+	transition:
+		color 0.2s ease,
+		background-position 0.4s ease;
+	cursor: pointer;
+
+	&:hover {
+		background: #ffffff;
+		color: #fb4b02;
+        background-position: right;
+	}
+
+	&::before {
+		content: "";
+		position: absolute;
+		inset: 0;
+		border-radius: inherit;
+		border: 3px solid #fb4b02;
+		clip-path: inset(0 100% 100% 0);
+		transition: clip-path 0.4s ease;
+	}
+
+	&:hover::before {
+		clip-path: inset(0 0 0 0);
+	}
+	&::after {
+		content: "";
+		position: absolute;
+		inset: 0;
+		border-radius: inherit;
+		border: 3px solid #fb4b02;
+		clip-path: inset(100% 0 0 100%);
+		transition: clip-path 0.4s ease;
+	}
+
+	&:hover::after {
+		clip-path: inset(0 0 0 0);
+	}
+}

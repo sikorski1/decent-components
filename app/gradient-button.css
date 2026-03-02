@@ -20,8 +20,8 @@
 	--padding: 15px;
 	--brad: 35px;
 	isolation: isolate;
-	font-size: 40px;
-	display: inline-grid;
+	font-size: 16px;
+	display: grid;
 	grid-template-areas: "button";
 
 	cursor: pointer;
